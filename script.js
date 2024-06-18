@@ -24,7 +24,7 @@ const songs = [
     artist: 'Jacinto Design',
   },
   {
-    name: 'jacinto-4',
+    name: 'metric-1',
     displayName: 'Front Row',
     artist: 'Jacinto Design',
   },
@@ -60,7 +60,34 @@ function loadSong(song) {
   image.src = `image/${song.name}.jpg`;
 }
 
-// On Load - Select first song
-loadSong(songs[1]);
+//Current Song
+let songIndex = 0;
 
-//
+// Previous Button
+function prevSong() {
+  songIndex--;
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+// Next Song
+function nextSong() {
+  songIndex++;
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+// On Load - Select first song
+loadSong(songs[songIndex]);
+
+// If pushed to 3rd song - Load Form
+
+// Event Listeners
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
