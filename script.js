@@ -91,7 +91,11 @@ function nextSong() {
 loadSong(songs[songIndex]);
 
 // If pushed to 3rd song - Load Form
-function loadForm() {}
+function loadForm() {
+  if (songIndex === 2) {
+    console.log('loadform');
+  }
+}
 
 // Update Progress Bar & Time
 function updateProgressBar(e) {
@@ -119,7 +123,17 @@ function updateProgressBar(e) {
   }
 }
 
+// Set Progress Bar
+function setProgressBar(e) {
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
+  const { duration } = music;
+  music.currentTime = (clickX / width) * duration;
+}
+
 // Event Listeners
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
+progressContainer.addEventListener('click', setProgressBar);
