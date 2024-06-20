@@ -192,6 +192,11 @@ function loadForm() {
     const submitButton = document.createElement('input');
     submitButton.type = 'submit';
     submitButton.value = 'Submit';
+    submitButton.style.border = 'none';
+    submitButton.style.padding = '8px';
+    submitButton.style.color = 'white';
+    submitButton.style.borderRadius = '10px';
+    submitButton.style.backgroundColor = 'grey';
     form.appendChild(submitButton);
 
     // Append the form to the container
