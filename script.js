@@ -1,6 +1,6 @@
 const image = document.querySelector('img');
-const title = document.getElementById('title');
-const artist = document.getElementById('artist');
+const title = window.document.getElementById('title');
+const artist = window.document.getElementById('artist');
 const music = document.querySelector('audio');
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
@@ -85,6 +85,7 @@ function nextSong() {
   }
   loadSong(songs[songIndex]);
   playSong();
+  loadForm();
 }
 
 // On Load - Select first song
@@ -94,6 +95,11 @@ loadSong(songs[songIndex]);
 function loadForm() {
   if (songIndex === 2) {
     console.log('loadform');
+
+    const form = document.createElement('form');
+    const input = document.createElement('input');
+    form.appendChild(input);
+    console.log(form);
   }
 }
 
