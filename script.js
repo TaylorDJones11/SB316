@@ -92,12 +92,36 @@ function nextSong() {
 loadSong(songs[songIndex]);
 
 // Form Validation
-function checkValidation() {}
+function checkValidation(name, lastname, email) {
+  const namePattern = /^[a-zA-Z\s]+$/;
+  const lastnamePattern = /^[a-zA-Z\s]+$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!namePattern.test(name)) {
+    alert('Please enter a valid name.');
+    return false;
+  }
+
+  if (!lastnamePattern.test(lastname)) {
+    alert('Please enter a valid last name.');
+    return false;
+  }
+
+  if (!emailPattern.test(email)) {
+    alert('Please enter a valid email address.');
+    return false;
+  }
+
+  return true;
+}
 
 // If pushed to 3rd song - Load Subscribe Form
 function loadForm() {
   if (songIndex === 2) {
-    console.log('loadform');
+    // Disable buttons
+    prevBtn.disabled = true;
+    playBtn.disabled = true;
+    nextBtn.disabled = true;
 
     const form = document.createElement('form');
     form.id = 'myForm';
@@ -106,7 +130,8 @@ function loadForm() {
     form.style.padding = '20px';
 
     const formHeader = document.createElement('h3');
-    formHeader.textContent = 'Do you like our services? Subscribe for discount';
+    formHeader.textContent =
+      'Do you like our services? Subscribe for discounts';
     formHeader.style.color = 'white';
     formHeader.style.marginBottom = '5px';
     form.appendChild(formHeader);
@@ -180,13 +205,21 @@ function loadForm() {
       const lastName = lastnameInput.value;
       const email = emailInput.value;
 
-      console.log('Name:', name);
-      console.log('Last Name:', lastName);
-      console.log('Email:', email);
+      if (checkValidation(name, lastName, email)) {
+        console.log('Name:', name);
+        console.log('Last Name:', lastName);
+        console.log('Email:', email);
+        alert('Form submitted successfully');
+
+        prevBtn.disabled = false;
+        playBtn.disabled = false;
+        nextBtn.disabled = false;
+        form.style.visibility = 'hidden';
+        playSong();
+      }
     });
 
     pauseSong();
-    console.log(form);
   }
 }
 
