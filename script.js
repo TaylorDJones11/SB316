@@ -225,6 +225,8 @@ function loadForm() {
     });
 
     pauseSong();
+    // Demonstrate using parentNode to access the parent of the form - which would be the form-container
+    console.log('Parent of form:', form.parentNode);
   }
 }
 
