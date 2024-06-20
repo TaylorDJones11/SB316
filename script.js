@@ -91,14 +91,101 @@ function nextSong() {
 // On Load - Select first song
 loadSong(songs[songIndex]);
 
-// If pushed to 3rd song - Load Form
+// Form Validation
+function checkValidation() {}
+
+// If pushed to 3rd song - Load Subscribe Form
 function loadForm() {
   if (songIndex === 2) {
     console.log('loadform');
 
     const form = document.createElement('form');
-    const input = document.createElement('input');
-    form.appendChild(input);
+    form.id = 'myForm';
+    form.style.backgroundColor = '#242323';
+    form.style.borderRadius = '10px';
+    form.style.padding = '20px';
+
+    const formHeader = document.createElement('h3');
+    formHeader.textContent = 'Do you like our services? Subscribe for discount';
+    formHeader.style.color = 'white';
+    formHeader.style.marginBottom = '5px';
+    form.appendChild(formHeader);
+
+    // Name Input
+    const nameLabel = document.createElement('label');
+    nameLabel.setAttribute('for', 'name');
+    nameLabel.textContent = 'Name:';
+    nameLabel.style.color = 'white';
+    nameLabel.style.marginRight = '5px';
+    form.appendChild(nameLabel);
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.id = 'name';
+    nameInput.name = 'name';
+    nameInput.required = true;
+    form.appendChild(nameInput);
+
+    // Last Name Input
+    const lastnameLabel = document.createElement('label');
+    lastnameLabel.setAttribute('for', 'lastname');
+    lastnameLabel.textContent = 'Last Name:';
+    lastnameLabel.style.color = 'white';
+    lastnameLabel.style.marginRight = '5px';
+    lastnameLabel.style.marginLeft = '5px';
+    form.appendChild(lastnameLabel);
+
+    const lastnameInput = document.createElement('input');
+    lastnameInput.type = 'text';
+    lastnameInput.id = 'lastname';
+    lastnameInput.name = 'lastname';
+    lastnameInput.required = true;
+    form.appendChild(lastnameInput);
+
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    // Email Input
+    const emailLabel = document.createElement('label');
+    emailLabel.setAttribute('for', 'email');
+    emailLabel.textContent = 'Email:';
+    emailLabel.style.color = 'white';
+    emailLabel.style.marginRight = '5px';
+    form.appendChild(emailLabel);
+
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.id = 'email';
+    emailInput.name = 'email';
+    emailInput.setAttribute('required', '');
+    form.appendChild(emailInput);
+
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    // Create submit button
+    const submitButton = document.createElement('input');
+    submitButton.type = 'submit';
+    submitButton.value = 'Submit';
+    form.appendChild(submitButton);
+
+    // Append the form to the container
+    document.getElementById('form-container').appendChild(form);
+
+    // Add event listener for form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = nameInput.value;
+      const lastName = lastnameInput.value;
+      const email = emailInput.value;
+
+      console.log('Name:', name);
+      console.log('Last Name:', lastName);
+      console.log('Email:', email);
+    });
+
+    pauseSong();
     console.log(form);
   }
 }
